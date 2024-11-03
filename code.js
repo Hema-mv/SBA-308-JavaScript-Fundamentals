@@ -28,6 +28,7 @@ function getLearnerData(course, assgrp, submissions) {
   let result = [];
   const newarr = {};
   const currentDate = new Date();
+
     let Filteredassignment={}
  
 
@@ -37,7 +38,7 @@ function getLearnerData(course, assgrp, submissions) {
   
   submissions.forEach((subarr) => {
      Filteredassignment = assgrp.assignments.find(a => a.id === subarr.assignment_id );
-
+     const score=0;
      //if (!Filteredassignment) return result;
     //  console.log(Date.parse(Filteredassignment.due_at) , currentDate)
     //  console.log(Date.parse(Filteredassignment.due_at) > currentDate)
@@ -45,8 +46,15 @@ function getLearnerData(course, assgrp, submissions) {
       return;
 
       const learnerId = subarr.learner_id;
-      const score = subarr.submission.submitted_at > Filteredassignment.due_at ? subarr.submission.score * 0.9 : subarr.submission.score;
-      
+      //const score = subarr.submission.submitted_at > Filteredassignment.due_at ? subarr.submission.score * 0.9 : subarr.submission.score;
+     if (subarr.submission.submitted_at > Filteredassignment.due_at)
+      {
+        score = subarr.submission.score * 0.9;
+      }
+      else
+      {
+        score= subarr.submission.score;
+      }
       
       const pointsPossible = Filteredassignment.points_possible;
     
