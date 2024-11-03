@@ -37,6 +37,11 @@ function getLearnerData(course, assgrp, submissions) {
       throw new Error("AssignmentGroup does not belong to the specified course.");
     }
 
+    // Validate that score and pointsPossible are numbers
+    if (typeof score !== 'number' || typeof pointsPossible !== 'number') {
+      throw new Error("Points_Possible shoule be number");
+    }
+
     submissions.forEach((subarr) => {
       Filteredassignment = assgrp.assignments.find(a => a.id === subarr.assignment_id);
       let score = 0;
