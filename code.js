@@ -38,7 +38,7 @@ function getLearnerData(course, assgrp, submissions) {
     }
 
     // Validate that score and pointsPossible are numbers
-    if (typeof score !== 'number' || typeof pointsPossible !== 'number') {
+    if ( typeof Number(Filteredassignment.points_possible) !== 'number') {
       throw new Error("Points_Possible shoule be number");
     }
 
